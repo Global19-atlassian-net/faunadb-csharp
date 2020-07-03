@@ -1,3 +1,9 @@
+## 3.0.0
+- Add new auth functions: `AccessProvider`, `AccessProviders`, and `CreateAccessProvider`
+- Deprecate `Contains` in favor of specific functions `ContainsField`, `ContainsPath`, and `ContainsValue`
+- Add `Reverse` function
+- Add new Fauna attributes annotations:`FaunaString`, `FaunaTime`, and `FaunaDate`
+
 ## 2.12.0
 - Add `Documents` function
 - Improve encoding from `DateTime` to `DateV` and `TimeV`
