@@ -65,7 +65,7 @@ namespace FaunaDB.Types
             var cls = Collection != null ? $", collection = {Collection}" : string.Empty;
             var db = Database != null ? $", database = {Database}" : string.Empty;
 
-            return $"RefV(id = \"{Id}\"{cls}{db})";
+            return $"Ref(id = \"{Id}\"{cls}{db})";
         }
     }
 

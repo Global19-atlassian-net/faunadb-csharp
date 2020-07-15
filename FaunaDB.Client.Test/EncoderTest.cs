@@ -397,5 +397,31 @@ namespace Test
                 Encode(new StringOverride(testUri, testGuid))
             );
         }
+
+        [Test]
+        public void TestToStringTypes()
+        {
+            Assert.AreEqual(
+                "SetRef({\"match\": Ref(id = \"spells_by_element\", collection = Ref(id = \"indexes\")), \"terms\": water})",
+                new SetRefV(new Dictionary<string, Value>() {
+                    { "terms", StringV.Of("water") },
+                    { "match", new RefV("spells_by_element", new RefV("indexes")) }
+                }).ToString()
+            );
+
+            Assert.AreEqual("true", BooleanV.Of(true).ToString());
+            Assert.AreEqual("3.14", DoubleV.Of(3.14).ToString());
+            Assert.AreEqual("42", LongV.Of(42).ToString());
+            Assert.AreEqual("null", NullV.Instance.ToString());
+            Assert.AreEqual("Date(\"2001-01-01\")", new DateV("2001-01-01").ToString());
+            Assert.AreEqual("Time(\"2000-01-01T01:10:30.123Z\")", new TimeV("2000-01-01T01:10:30.123Z").ToString());
+            Assert.AreEqual("[1, 2, 3]", ArrayV.Of(1, 2, 3).ToString());
+            Assert.AreEqual("Bytes(0x01, 0x02, 0x03)", BytesV.Of(0x1, 0x2, 0x3).ToString());
+
+            Assert.AreEqual("{\"answer\": 42, \"question\": meaning}",
+                ObjectV.With("answer", 42, "question", "meaning").ToString());
+            Assert.AreEqual("{\"answer\": 42, \"question\": meaning}",
+                ObjectV.With("question", "meaning", "answer", 42).ToString());
+        }
     }
 }
